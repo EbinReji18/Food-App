@@ -15,10 +15,10 @@ function App() {
     <Nav />
     <Search foodData={foodData} setFoodData={setFoodData} />
     <Container>
-      <InnerContainer>
+      <InnerContainer width="40%" >
         <FoodList foodData={foodData} setFoodId={setFoodId} />  
       </InnerContainer>
-      <InnerContainer>
+      <InnerContainer width="60%">
   {foodId ? (
     <FoodDetails foodId={foodId} />
   ) : (

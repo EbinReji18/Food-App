@@ -1,9 +1,9 @@
-import '../components/InnerContainer.css'
+import '../components/InnerContainer.css';
 
-export default function InnerContainer({children}) {
-    return (
-        <div className='innerContainer'>
-            {children}
-        </div>
-    )
+export default function InnerContainer({ children, width }) {
+  return (
+    <div className="innerContainer" style={{ flex: `0 0 ${width}` }}>
+      {children}
+    </div>
+  );
 }

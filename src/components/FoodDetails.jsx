@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-
+import "../components/FoodDetails.css";
+import ItemList from "./ItemList";
 export default function FoodDetails({ foodId }) {
   const [food, setFood] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -11,40 +12,64 @@ export default function FoodDetails({ foodId }) {
 
     async function fetchFood() {
       setIsLoading(true);
-      const res = await fetch(`${URL}?apiKey=${API_KEY}`);
-      const data = await res.json();
-      console.log(data);
-      setFood(data);
-      setIsLoading(false);
+      try {
+        const res = await fetch(`${URL}?apiKey=${API_KEY}`);
+        const data = await res.json();
+        console.log(data);
+        setFood(data);
+      } catch (error) {
+        console.error("Failed to fetch food details:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
+
     fetchFood();
   }, [foodId]);
 
   return (
     <div>
-      <div>
-        <h1>{food.title}</h1>
-        <img src={food.image} alt={food.title} />
-        <span>
-          <strong>⏱️ {food.readyInMinutes} Minutes</strong>
-        </span>{" "}
-        |{" "}
-        <span>{food.vegetarian ? "Vegetarian" : "Non-Vegetarian"}</span> |{" "}
-        <span>₹{food.pricePerServing}</span>
-      </div>
-
-      <div>
-        <h2>Instructions</h2>
+      <div className="recipeCard">
         {isLoading ? (
-          <p>Loading.....</p>
-        ) : food.analyzedInstructions?.[0]?.steps?.length > 0 ? (
-          <ul>
-            {food.analyzedInstructions[0].steps.map((step) => (
-              <li key={step.number}>{step.step}</li>
-            ))}
-          </ul>
+          <p>Loading...</p>
         ) : (
-          <p>No instructions available.</p>
+          <>
+            <h1 className="recipeName">{food.title}</h1>
+            <img className="recipeImage" src={food.image} alt={food.title} />
+
+            <div className="recipeDetails">
+              <span>
+                <strong>⏱️ {food.readyInMinutes} Minutes</strong>
+              </span>{" "}
+              |{" "}
+              <span>
+                <strong>
+                  {food.vegetarian ? "Vegetarian" : "Non-Vegetarian"}
+                </strong>
+              </span>{" "}
+              |{" "}
+              <span>
+                <strong>₹{food.pricePerServing}</strong>
+              </span>
+            </div>
+
+            <h2>Ingredients</h2>
+            
+            <ItemList food={food} isLoading={isLoading} />
+
+            <h2>Instructions</h2>
+            <div className="recipeInstructions">
+              {food.analyzedInstructions?.[0]?.steps?.length > 0 ? (
+                <ol>
+                  {food.analyzedInstructions[0].steps.map((step) => (
+                    <li key={step.number}>{step.step}</li>
+                  ))}
+                </ol>
+              ) : (
+                <p>No instructions available.</p>
+              )}
+            </div>
+          </>
         )}
       </div>
     </div>
