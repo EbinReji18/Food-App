@@ -13,14 +13,14 @@ function App() {
   return (
     <>
     <Nav />
-    <Search foodData={foodData} setFoodData={setFoodData} />
+    <Search foodData={foodData} setFoodData={setFoodData} setFoodId={setFoodId} />
     <Container>
-      <InnerContainer width="40%" >
+      <InnerContainer width="45%" >
         <FoodList foodData={foodData} setFoodId={setFoodId} />  
       </InnerContainer>
-      <InnerContainer width="60%">
+      <InnerContainer width="55%">
   {foodId ? (
-    <FoodDetails foodId={foodId} />
+    <FoodDetails foodId={foodId} setFoodId={setFoodId} />
   ) : (
     <p style={{ padding: '20px', fontWeight: 'bold' }}>👈 Select a food to view details</p>
   )}

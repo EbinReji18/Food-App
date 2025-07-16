@@ -1,9 +1,7 @@
- import '../components/Container.css'
- 
- export default function Container({children}) {
+export default function Container({ children }) {
     return (
-        <div className='parentContainer'>
+        <div className="d-flex w-100">
             {children}
         </div>
-    )
- }
+    );
+}
