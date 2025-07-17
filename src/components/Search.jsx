@@ -24,7 +24,7 @@ export default function Search({ foodData, setFoodData, setFoodId }) {
         }
 
         setFoodData(results);
-        setFoodId(null); // reset selected recipe when filter/search changes
+        setFoodId(null);
       } catch (error) {
         console.error("Error fetching food data:", error);
       }
@@ -36,21 +36,31 @@ export default function Search({ foodData, setFoodData, setFoodId }) {
   return (
     <div className="container my-4">
       <div
-        className="d-flex justify-content-center align-items-center p-4 rounded shadow bg-light mx-auto"
+        className="p-4 rounded shadow bg-light mx-auto"
         style={{
           width: "96%",
           minHeight: "160px",
-         
         }}
       >
-        <div className="d-flex justify-content-center align-items-center flex-wrap gap-4">
+        <div
+          className="d-flex justify-content-center align-items-center flex-wrap gap-3"
+          style={{
+            rowGap: "1rem",
+          }}
+        >
           {/* Filter Dropdown */}
           <select
             className="form-select border-warning"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             style={{
-              width: "250px",
+              width: "100%",
+              maxWidth: "250px",
+              minWidth: "180px",
+              minHeight: "44px",
+              maxHeight: "48px",
+              fontSize: "1rem",
+              padding: "8px 14px",
             }}
           >
             <option value="all">All</option>
@@ -66,9 +76,13 @@ export default function Search({ foodData, setFoodData, setFoodId }) {
             className="form-control border-warning"
             placeholder="Search for a recipe..."
             style={{
-              width: "250px",
-              padding: "10px 20px",
-              fontSize: "medium",
+              width: "100%",
+              maxWidth: "250px",
+              minWidth: "180px",
+              minHeight: "44px",
+              maxHeight: "48px",
+              fontSize: "1rem",
+              padding: "8px 14px",
             }}
           />
         </div>

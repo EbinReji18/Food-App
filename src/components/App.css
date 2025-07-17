@@ -1,16 +1,91 @@
-body{
-    margin: 0;
-    color:  black;
+/* Universal box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden; 
+}
+
+
+
+/* Navbar fix */
+.navbar {
+  max-width: 100%;
+  overflow-x: hidden;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.container-fluid {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Button style */
 .btn-orange-outline {
-    border: 1px solid #FE5D26;
-    color: #FE5D26;
-    background-color: transparent;
+  border: 1px solid #FE5D26;
+  color: #FE5D26;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-orange-outline:hover {
+  background-color: #FE5D26;
+  color: white;
+}
+
+/* Image sizing */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Card responsiveness */
+.container,
+.row,
+.card {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* Full center utility */
+.full-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Mobile adjustments */
+@media (max-width: 576px) {
+  .card {
+    margin: 10px;
   }
-  
-  .btn-orange-outline:hover {
-    background-color: #FE5D26;
-    color: white;
+
+  .btn {
+    font-size: 14px;
+    padding: 8px 12px;
   }
-  
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .navbar-brand {
+    font-size: 1.4rem;
+    word-break: break-word;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
