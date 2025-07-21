@@ -24,7 +24,7 @@ export default function Search({ foodData, setFoodData, setFoodId }) {
         }
 
         setFoodData(results);
-        setFoodId(null); // reset selected recipe when filter/search changes
+        setFoodId(null); // Reset selected recipe when filter/search changes
       } catch (error) {
         console.error("Error fetching food data:", error);
       }
@@ -36,42 +36,48 @@ export default function Search({ foodData, setFoodData, setFoodId }) {
   return (
     <div className="container my-4">
       <div
-        className="d-flex justify-content-center align-items-center p-4 rounded shadow bg-light mx-auto"
+        className="d-flex justify-content-center align-items-center p-4 rounded shadow bg-light mx-auto flex-wrap gap-4 w-100"
         style={{
-          width: "96%",
+          maxWidth: "100%",
           minHeight: "160px",
-         
+          overflow: "hidden",
         }}
       >
-        <div className="d-flex justify-content-center align-items-center flex-wrap gap-4">
-          {/* Filter Dropdown */}
-          <select
-            className="form-select border-warning"
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            style={{
-              width: "250px",
-            }}
-          >
-            <option value="all">All</option>
-            <option value="veg">Vegetarian</option>
-            <option value="nonveg">Non-Vegetarian</option>
-          </select>
+        {/* Filter Dropdown */}
+        <select
+          className="form-select border-warning"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          id="filter-select"
+          name="filter"
+          style={{
+            width: "100%",
+            maxWidth: "250px",
+            minWidth: "180px",
+          }}
+        >
+          <option value="all">All</option>
+          <option value="veg">Vegetarian</option>
+          <option value="nonveg">Non-Vegetarian</option>
+        </select>
 
-          {/* Search Input */}
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            className="form-control border-warning"
-            placeholder="Search for a recipe..."
-            style={{
-              width: "250px",
-              padding: "10px 20px",
-              fontSize: "medium",
-            }}
-          />
-        </div>
+        {/* Search Input */}
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="form-control border-warning"
+          placeholder="Search for a recipe..."
+          id="recipe-search"
+          name="query"
+          style={{
+            width: "100%",
+            maxWidth: "250px",
+            minWidth: "180px",
+            padding: "10px 20px",
+            fontSize: "medium",
+          }}
+        />
       </div>
     </div>
   );

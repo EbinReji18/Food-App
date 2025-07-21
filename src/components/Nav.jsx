@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 export default function Nav() {
   const [darkMode, setDarkMode] = useState(false);
 
-  // Optional: Apply theme to body tag
   useEffect(() => {
     document.body.style.backgroundColor = darkMode ? "#121212" : "#fff";
     document.body.style.color = darkMode ? "#f5f5f5" : "#000";
@@ -11,16 +10,13 @@ export default function Nav() {
 
   return (
     <nav
-      className={`navbar navbar-expand-lg ${
-        darkMode ? "navbar-dark bg-dark" : "navbar-light"
-      }`}
+      className={`navbar navbar-expand-lg ${darkMode ? "navbar-dark bg-dark" : "navbar-light"}`}
       style={{
         backgroundColor: darkMode ? "#212529" : "#FE5D26",
-        padding: "1.5rem 0", // Increased height
+        padding: "1.5rem 0",
       }}
     >
       <div className="container d-flex justify-content-between align-items-center">
-        {/* Brand */}
         <a
           className="navbar-brand"
           href="#"
@@ -35,12 +31,9 @@ export default function Nav() {
           Spice Notes
         </a>
 
-        {/* Dark Mode Toggle */}
         <button
           onClick={() => setDarkMode(!darkMode)}
-          className={`btn btn-sm ${
-            darkMode ? "btn-light" : "btn-dark"
-          } fw-bold`}
+          className={`btn btn-sm ${darkMode ? "btn-light" : "btn-dark"} fw-bold`}
         >
           {darkMode ? "Light Mode ☀️" : "Dark Mode 🌙"}
         </button>
